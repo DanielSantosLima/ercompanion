@@ -12,9 +12,10 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   title: {
-    fontSize: 30,
+    fontSize: 40,
     marginBottom: "5%",
-    alignSelf: "center"
+    alignSelf: "center",
+    
   },
   completionContainer: {
     justifyContent: "center",
@@ -30,5 +31,8 @@ export const styles = StyleSheet.create({
   },
   barItem: {
     justifyContent: "flex-start"
+  },
+  progressContainer: {
+    marginBottom: "10%"
   }
 });

@@ -10,8 +10,9 @@ export const styles = StyleSheet.create({
     marginHorizontal: "5%"
   },
   progressTitle: {
-    fontSize: 20,
-    fontWeight: "bold"
+    fontSize: 30,
+    marginBottom: "5%",
+    fontFamily: "Mantinia"
   },
   circularProgressContainer: {
     justifyContent: "center",

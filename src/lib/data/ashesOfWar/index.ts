@@ -303,7 +303,7 @@ export const ashesOfWar: CommonItem[] = [
   },
   {
     id: 51,
-    name: "Carian Retaliation",
+    name: "Ash of War: Carian Retaliation",
     externalLink: "https://eldenring.wiki.fextralife.com/Ash+of+War:+Carian+Retaliation",
     checked: false
   },
@@ -541,4 +541,4 @@ export const ashesOfWar: CommonItem[] = [
     externalLink: "https://eldenring.wiki.fextralife.com/Ash+of+War:+White+Shadow%27s+Lure",
     checked: false
   },
- ]
+]

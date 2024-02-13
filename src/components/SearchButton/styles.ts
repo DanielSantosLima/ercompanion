@@ -18,7 +18,8 @@ textInput: {
   borderBottomWidth: 1,
   width: "80%",
   padding: 15,
-  fontSize: 15
+  fontSize: 20,
+  fontFamily: "Mantinia"
 },
 searchIcon: {
 backgroundColor: Colors.primary,

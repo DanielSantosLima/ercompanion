@@ -39,5 +39,10 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     padding: 10,
     borderRadius: 50
-  }
+  },
+  title: {
+    fontSize: 40,
+    marginBottom: "5%",
+    alignSelf: "center",
+  },
 })
