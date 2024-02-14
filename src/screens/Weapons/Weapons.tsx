@@ -1,95 +1,66 @@
 import { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
-import CircularProgress from "react-native-circular-progress-indicator";
-import { SearchButton } from "../../components/SearchButton/SearchButton.tsx";
-import { ToggableItem } from "../../components/ToggableItem.tsx";
-import { Colors } from "../../lib/assets/Colors.ts";
-import { globalStyle } from "../../lib/assets/globalStyle.ts";
-import { ashesOfWar } from "../../lib/data/ashesOfWar/index.ts";
-import { CalculateCommonItemArrayPercentage } from "../../lib/functions/CalculateCommonItemArrayPercentage.ts";
+import { SafeAreaView, ScrollView, View } from "react-native";
+import { AccordionComponent } from "../../components/Accordion.tsx";
+import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
+import { weapons } from "../../lib/data/weapons/index.ts";
+import { accordionArraySorting } from "../../lib/functions/accordionArraySorting.ts";
+import { calculateAccordionCompletion } from "../../lib/functions/calculateAccordionCompletion.ts";
+import { Accordion } from "../../lib/interfaces/Accordion.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const WeaponsScreen = () => {
+  const wesponsSorted = accordionArraySorting(weapons);
+
+  const [weaponsArray, setWeaponsArray] = useState<Accordion[]>(wesponsSorted);
   const [totalCompletion, setTotalCompletion] = useState<number>(0);
-  const [collectedItems, setCollectedItems] =
-    useState<CommonItem[]>(ashesOfWar);
-  const [filteredItems, setFilteredItems] = useState<CommonItem[]>(ashesOfWar);
-  const [textSearch, setTextSearch] = useState<string>("");
+
+  //Esse valor tem que ser inicializado com a resposta da API feita no UseEffect
+  const [numberOfBossess, setNumberOfBossess] = useState<string>("");
 
   useEffect(() => {
-    filterItems();
-  }, [textSearch, collectedItems]);
+    const calculation = calculateAccordionCompletion(weaponsArray);
 
-  const calculateCompletion = () => {
-    const percentage = CalculateCommonItemArrayPercentage(collectedItems);
-    setTotalCompletion(percentage);
-  };
-  const [isInputVisible, setIsInputVisible] = useState<boolean>(false);
+    setNumberOfBossess(
+      `${calculation.totalChecked}/${calculation.totalInArray}`
+    );
+  }, []);
 
-  const filterItems = () => {
-    if (textSearch.trim() === "") {
-      setFilteredItems(collectedItems);
-    } else {
-      const searchTextLower = textSearch.toLowerCase();
-      const results = collectedItems.filter((item) =>
-        item.name.toLowerCase().includes(searchTextLower)
-      );
-      setFilteredItems(results);
-    }
-  };
+  const calculateCompletion = (value: CommonItem[], arrayId: number) => {
+    const parentIndex = weaponsArray.findIndex((item) => item.id === arrayId);
 
-  const onItemClick = (id: number, checked: boolean) => {
-    const clickedItem = filteredItems.find((item) => item.id === id);
-    if (clickedItem) {
-      const index = collectedItems.findIndex(
-        (item) => item.id === clickedItem.id
-      );
-      if (index !== -1) {
-        const temp = [...collectedItems];
-        temp[index].checked = checked;
-        setCollectedItems(temp);
-        calculateCompletion();
-      }
-    }
-  };
+    const temp = [...weaponsArray];
+    temp[parentIndex].contents = value;
+    setWeaponsArray(temp);
 
-  const toggleInputVisibility = () => {
-    setIsInputVisible(!isInputVisible);
-    setTextSearch("");
+    const calculation = calculateAccordionCompletion(weaponsArray);
+
+    setTotalCompletion(calculation.percentage);
+    setNumberOfBossess(
+      `${calculation.totalChecked}/${calculation.totalInArray}`
+    );
   };
 
   return (
     <SafeAreaView style={styles.screenContainer}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.circularProgressContainer}>
-          <Text style={[globalStyle.text, styles.title]}>
-            Weapons Collected
-          </Text>
-          <CircularProgress
+          <CustomCircularProgress
             value={totalCompletion}
-            radius={60}
-            progressValueColor={"#000"}
-            duration={500}
-            inActiveStrokeColor={Colors.accent}
-            activeStrokeColor={Colors.primary}
-            activeStrokeWidth={15}
-            inActiveStrokeWidth={9}
-            inActiveStrokeOpacity={0.25}
-            strokeLinecap="round"
             valueSuffix="%"
-            progressValueStyle={{ fontFamily: "serif" }}
+            title="Weapons Collected"
+            subtitle={numberOfBossess}
+            subtitleFontSize={14}
+            progressValueFontSize={30}
+            radius={70}
           />
         </View>
-        <SearchButton
-          isInputVisible={isInputVisible}
-          textSearch={textSearch}
-          setTextSearch={(text) => setTextSearch(text)}
-          toggleInputVisibility={toggleInputVisibility}
-        />
-        {filteredItems.map((item: CommonItem) => (
-          <ToggableItem key={item.id} item={item} onItemClick={onItemClick} />
-        ))}
+        <View style={{ marginBottom: "10%" }}>
+          <AccordionComponent
+            item={weaponsArray}
+            calculateCompletion={calculateCompletion}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

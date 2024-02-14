@@ -3,13 +3,16 @@ import { SafeAreaView, ScrollView, View } from "react-native";
 import { AccordionComponent } from "../../components/Accordion.tsx";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
 import { shields } from "../../lib/data/shields/index.ts";
+import { accordionArraySorting } from "../../lib/functions/accordionArraySorting.ts";
 import { calculateAccordionCompletion } from "../../lib/functions/calculateAccordionCompletion.ts";
 import { Accordion } from "../../lib/interfaces/Accordion.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const ShieldsScreen = () => {
-  const [shieldsArray, setShieldsArray] = useState<Accordion[]>(shields);
+  const shieldsSorted = accordionArraySorting(shields);
+
+  const [shieldsArray, setShieldsArray] = useState<Accordion[]>(shieldsSorted);
   const [totalCompletion, setTotalCompletion] = useState<number>(0);
 
   //Esse valor tem que ser inicializado com a resposta da API feita no UseEffect

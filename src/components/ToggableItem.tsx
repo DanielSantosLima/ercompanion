@@ -77,10 +77,11 @@ export const ToggableItem = (props: AccordionItemProps) => {
               <Text
                 style={[
                   globalStyle.text,
-                  { marginVertical: "5%", fontSize: 18 },
+                  { marginVertical: "5%", fontSize: 16 },
                 ]}
               >
-                Location - {props.item.location ? props.item.location : "???"}
+                Location/Source -{" "}
+                {props.item.location ? props.item.location : "???"}
               </Text>
               <Text style={[globalStyle.text, { fontSize: 18 }]}>
                 Need more information?
