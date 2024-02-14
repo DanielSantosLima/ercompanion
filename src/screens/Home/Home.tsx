@@ -25,6 +25,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             value={totalCompletion}
             title="Your Total Completion is"
             titleStyle={styles.completionTitle}
+            radius={80}
           />
         </View>
         <View style={styles.progressContainer}>
