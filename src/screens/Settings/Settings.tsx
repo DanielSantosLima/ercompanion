@@ -1,9 +1,25 @@
-import { Text, View } from "react-native";
+import {
+  SafeAreaView,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { styles } from "./styles";
 
 export const SettingsScreen = () => {
   return (
-    <View>
-      <Text>Settings</Text>
-    </View>
+    <SafeAreaView style={styles.screenView}>
+      <View style={styles.themeContainer}>
+        <Text style={styles.text}>Tema Escuro</Text>
+        <Switch />
+      </View>
+      <View style={styles.resetContainer}>
+        <Text style={styles.text}>Reset Progression</Text>
+        <TouchableOpacity style={styles.resetButtonContainer}>
+          <Text style={styles.resetText}>Reset</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
