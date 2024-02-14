@@ -31,7 +31,7 @@ export const CustomCircularProgress = (props: CircularProgressProps) => {
       alignItems: "center",
     },
     title: {
-      fontSize: 40,
+      fontSize: 30,
       marginBottom: "5%",
       alignSelf: "center",
     },

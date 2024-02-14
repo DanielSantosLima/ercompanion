@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
-import CircularProgress from "react-native-circular-progress-indicator";
+import { SafeAreaView, ScrollView, View } from "react-native";
+import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
 import { SearchButton } from "../../components/SearchButton/SearchButton.tsx";
 import { ToggableItem } from "../../components/ToggableItem.tsx";
-import { Colors } from "../../lib/assets/Colors.ts";
-import { ashesOfWar } from "../../lib/data/ashesOfWar/index.ts";
+import { spiritSummons } from "../../lib/data/spiritSummons/index.ts";
 import { CalculateCommonItemArrayPercentage } from "../../lib/functions/CalculateCommonItemArrayPercentage.ts";
+import { arraySorting } from "../../lib/functions/arraySorting.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const SpiritSummonsScreen = () => {
+  const sortedArray = arraySorting(spiritSummons);
+
   const [totalCompletion, setTotalCompletion] = useState<number>(0);
   const [collectedItems, setCollectedItems] =
-    useState<CommonItem[]>(ashesOfWar);
-  const [filteredItems, setFilteredItems] = useState<CommonItem[]>(ashesOfWar);
+    useState<CommonItem[]>(sortedArray);
+  const [filteredItems, setFilteredItems] = useState<CommonItem[]>(sortedArray);
   const [textSearch, setTextSearch] = useState<string>("");
 
   useEffect(() => {
@@ -62,19 +64,10 @@ export const SpiritSummonsScreen = () => {
     <SafeAreaView style={styles.screenContainer}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.circularProgressContainer}>
-          <Text style={styles.progressTitle}>Spirit Summons Collected</Text>
-          <CircularProgress
+          <CustomCircularProgress
             value={totalCompletion}
-            radius={60}
-            progressValueColor={"#000"}
-            duration={500}
-            inActiveStrokeColor={Colors.accent}
-            activeStrokeColor={Colors.primary}
-            activeStrokeWidth={15}
-            inActiveStrokeWidth={9}
-            inActiveStrokeOpacity={0.25}
-            strokeLinecap="round"
             valueSuffix="%"
+            title="Spirit Summons Collected"
           />
         </View>
         <SearchButton
