@@ -9,19 +9,23 @@ const countChecks = (array: CommonItem[]): number => {
 }
 
 
-export const calculateAccordionCompletion = (parentArray: Accordion[]): number  => {
-    const parentValuesValues: number[] = parentArray.map((item: Accordion) => {
-      return countChecks(item.contents)
-    })
-  
-    const totalParentCount = parentValuesValues.reduce((total, item) => {
-      return total + item
-    }, 0)
-  
-    const totalItemsInParent = parentArray.reduce((total, item) => {
-      return total + item.contents.length
-    }, 0)
-  
-    const percentage = (totalParentCount / totalItemsInParent) * 100
-    return percentage
+export const calculateAccordionCompletion = (parentArray: Accordion[]): { totalChecked: number, percentage: number, totalInArray: number } => {
+  const parentValues: number[] = parentArray.map((item: Accordion) => {
+    return countChecks(item.contents)
+  })
+
+  const totalParentCount = parentValues.reduce((total, item) => {
+    return total + item
+  }, 0)
+
+  const totalItemsInParent = parentArray.reduce((total, item) => {
+    return total + item.contents.length
+  }, 0)
+
+  const percentage = (totalParentCount / totalItemsInParent) * 100
+  return {
+    totalChecked: totalParentCount,
+    percentage: percentage,
+    totalInArray: totalItemsInParent
+  }
 }

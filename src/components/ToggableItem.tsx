@@ -66,17 +66,35 @@ export const ToggableItem = (props: AccordionItemProps) => {
         <TouchableWithoutFeedback onPress={closeModal}>
           <View style={styles.modalBackground}>
             <View style={styles.modalContent}>
-              <Text style={{ marginVertical: "5%", fontWeight: "bold" }}>
+              <Text
+                style={[
+                  globalStyle.text,
+                  { marginVertical: "5%", fontSize: 22 },
+                ]}
+              >
                 {props.item.name}
               </Text>
-              <Text>Need to know where to find it? Follow the link</Text>
+              <Text
+                style={[
+                  globalStyle.text,
+                  { marginVertical: "5%", fontSize: 18 },
+                ]}
+              >
+                Location - {props.item.location ? props.item.location : "???"}
+              </Text>
+              <Text style={[globalStyle.text, { fontSize: 18 }]}>
+                Need more information?
+              </Text>
+              <Text style={[globalStyle.text, { fontSize: 18 }]}>
+                Follow the Link Bellow
+              </Text>
               <TouchableOpacity
                 onPress={() => {
                   Linking.openURL(props.item.externalLink);
                   closeModal();
                 }}
               >
-                <Text style={styles.externalLink}>
+                <Text style={[globalStyle.text, styles.externalLink]}>
                   {props.item.externalLink}
                 </Text>
               </TouchableOpacity>
@@ -127,6 +145,7 @@ const styles = StyleSheet.create({
     color: "blue",
     textDecorationLine: "underline",
     marginTop: 10,
+    fontSize: 17,
   },
   closeButton: {
     marginTop: 10,

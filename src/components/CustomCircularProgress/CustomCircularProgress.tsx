@@ -8,6 +8,7 @@ type CircularProgressProps = {
   activeStrokeColor?: string;
   inActiveStrokeColor?: string;
   progressValueColor?: string;
+  progressValueFontSize?: number;
   valueSuffix?: string;
   duration?: number;
   activeStrokeWidth?: number;
@@ -17,6 +18,8 @@ type CircularProgressProps = {
   strokeLinecap?: "butt" | "round" | "square";
   title: string;
   titleStyle?: {};
+  subtitle?: string;
+  subtitleFontSize?: number;
 };
 
 export const CustomCircularProgress = (props: CircularProgressProps) => {
@@ -64,6 +67,11 @@ export const CustomCircularProgress = (props: CircularProgressProps) => {
         strokeLinecap={props.strokeLinecap ? props.strokeLinecap : "round"}
         valueSuffix={props.valueSuffix ? props.valueSuffix : "%"}
         progressValueStyle={{ fontFamily: font }}
+        subtitle={props.subtitle ? props.subtitle : ""}
+        subtitleFontSize={props.subtitleFontSize ? props.subtitleFontSize : 15}
+        progressValueFontSize={
+          props.progressValueFontSize ? props.progressValueFontSize : 20
+        }
       />
     </View>
   );

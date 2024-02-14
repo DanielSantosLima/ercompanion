@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { AccordionComponent } from "../../components/Accordion.tsx";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
@@ -12,6 +12,17 @@ export const BossessScreen = () => {
   const [bossessArray, setBossessArray] = useState<Accordion[]>(bossess);
   const [totalCompletion, setTotalCompletion] = useState<number>(0);
 
+  //Esse valor tem que ser inicializado com a resposta da API feita no UseEffect
+  const [numberOfBossess, setNumberOfBossess] = useState<string>("");
+
+  useEffect(() => {
+    const calculation = calculateAccordionCompletion(bossessArray);
+
+    setNumberOfBossess(
+      `${calculation.totalChecked}/${calculation.totalInArray}`
+    );
+  }, []);
+
   const calculateCompletion = (value: CommonItem[], arrayId: number) => {
     const parentIndex = bossessArray.findIndex((item) => item.id === arrayId);
 
@@ -19,9 +30,12 @@ export const BossessScreen = () => {
     temp[parentIndex].contents = value;
     setBossessArray(temp);
 
-    const percentage = calculateAccordionCompletion(bossessArray);
+    const calculation = calculateAccordionCompletion(bossessArray);
 
-    setTotalCompletion(percentage);
+    setTotalCompletion(calculation.percentage);
+    setNumberOfBossess(
+      `${calculation.totalChecked}/${calculation.totalInArray}`
+    );
   };
 
   return (
@@ -32,12 +46,18 @@ export const BossessScreen = () => {
             value={totalCompletion}
             valueSuffix="%"
             title="Bossess Defeated"
+            subtitle={numberOfBossess}
+            subtitleFontSize={14}
+            progressValueFontSize={30}
+            radius={70}
           />
         </View>
-        <AccordionComponent
-          item={bossess}
-          calculateCompletion={calculateCompletion}
-        />
+        <View style={{ marginBottom: "10%" }}>
+          <AccordionComponent
+            item={bossess}
+            calculateCompletion={calculateCompletion}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
