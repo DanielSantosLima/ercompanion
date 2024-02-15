@@ -1,0 +1,103 @@
+import { CommonItem } from "@/lib/interfaces/Common";
+
+export const colossalWeapons: CommonItem[] = [
+  {
+    id: 1,
+    name: "Duelist Greataxe",
+    location: "Dropped by Duelist enemies near the colosseum (Leyndell)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Duelist+Greataxe",
+    checked: false,
+  },
+  {
+    id: 2,
+    name: "Rotten Greataxe",
+    location: "Dropped by Rotten Duelist (North of Ordina, Liturgical Town)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Rotten+Greataxe",
+    checked: false,
+  },
+  {
+    id: 3,
+    name: "Golem's Halberd",
+    location: "Dropped by Golems",
+    externalLink: "https://eldenring.wiki.fextralife.com/Golem's+Halberd",
+    checked: false,
+  },
+  {
+    id: 4,
+    name: "Giant-Crusher",
+    location: "Carriage (South of Outer Wall Phantom Tree Site of Grace)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Giant-Crusher",
+    checked: false,
+  },
+  {
+    id: 5,
+    name: "Prelate's Inferno Crozier",
+    location: "Fire Prelate (Fort Laiedd)",
+    externalLink:
+      "https://eldenring.wiki.fextralife.com/Prelate's+Inferno+Crozier",
+    checked: false,
+  },
+  {
+    id: 6,
+    name: "Great Club",
+    location: "Stonedigger Troll (Old Altus Tunnel)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Great+Club",
+    checked: false,
+  },
+  {
+    id: 7,
+    name: "Troll's Hammer",
+    location: "Storage shed (Old Altus Tunnel)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Troll's+Hammer",
+    checked: false,
+  },
+  {
+    id: 8,
+    name: "Watchdog's Staff",
+    location: "Road's End Catacombs (Liurnia of the Lakes)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Watchdog's+Staff",
+    checked: false,
+  },
+  {
+    id: 9,
+    name: "Staff of the Avatar",
+    location: "Erdtree Avatar (Deeproot Dephts)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Staff+of+the+Avatar",
+    checked: false,
+  },
+  {
+    id: 10,
+    name: "Rotten Staff",
+    location: "Putrid Avatar (Elphael, Brace of the Haligtree)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Rotten+Staff",
+    checked: false,
+  },
+  {
+    id: 11,
+    name: "Envoy's Greathorn",
+    location: "Giant Oracle Envoy (Miquella's Haligtree)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Envoy's+Greathorn",
+    checked: false,
+  },
+  {
+    id: 12,
+    name: "Ghiza's Wheel",
+    location: "Inquisitor Ghiza (Volcano Manor)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Ghiza's+Wheel",
+    checked: false,
+  },
+  {
+    id: 13,
+    name: "Fallingstar Beast Jaw",
+    location: "Full-Grown Fallingstar Beast (Mt. Gelmir)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Fallingstar+Beast+Jaw",
+    checked: false,
+  },
+  {
+    id: 14,
+    name: "Axe of Godfrey",
+    location: "Enia (Roundtable Hold)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Axe+of+Godfrey",
+    checked: false,
+  },
+];

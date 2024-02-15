@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Modal,
   StyleSheet,
@@ -77,7 +77,7 @@ export const ToggableItem = (props: AccordionItemProps) => {
               <Text
                 style={[
                   globalStyle.text,
-                  { marginVertical: "5%", fontSize: 16 },
+                  { marginVertical: "5%", fontSize: 15 },
                 ]}
               >
                 Location/Source -{" "}
@@ -86,7 +86,14 @@ export const ToggableItem = (props: AccordionItemProps) => {
               <Text style={[globalStyle.text, { fontSize: 18 }]}>
                 Need more information?
               </Text>
-              <Text style={[globalStyle.text, { fontSize: 18 }]}>
+              <Text
+                style={[
+                  globalStyle.text,
+                  {
+                    fontSize: 18,
+                  },
+                ]}
+              >
                 Follow the Link Bellow
               </Text>
               <TouchableOpacity
@@ -96,7 +103,7 @@ export const ToggableItem = (props: AccordionItemProps) => {
                 }}
               >
                 <Text style={[globalStyle.text, styles.externalLink]}>
-                  {props.item.externalLink}
+                  Link to the Wiki
                 </Text>
               </TouchableOpacity>
             </View>

@@ -4,8 +4,29 @@ import { ballistas } from "./ballistas";
 import { bows } from "./bows";
 import { claws } from "./claws";
 import { colossalSwords } from "./colossalSwords";
+import { colossalWeapons } from "./colossalWeapons";
 import { crossbows } from "./crossbows";
+import { curvedGreatswords } from "./curvedGreatswords";
+import { curvedSwords } from "./curvedSwords";
 import { daggers } from "./daggers";
+import { fists } from "./fists";
+import { flails } from "./flails";
+import { glintstoneStaffs } from "./glintstoneStaffs";
+import { greatHammers } from "./greatHammers";
+import { greatSpears } from "./greatSpears";
+import { greataxes } from "./greataxes";
+import { greatbows } from "./greatbows";
+import { greatswords } from "./greatswords";
+import { halberds } from "./halberds";
+import { hammers } from "./hammers";
+import { heavyThrustingSwords } from "./heavyThrustingSwords";
+import { katanas } from "./katanas";
+import { lightBows } from "./lightBows";
+import { reapers } from "./reapers";
+import { sacredSeals } from "./sacredSeals";
+import { spears } from "./spears";
+import { straightSwords } from "./straightSwords";
+import { thrustingSwords } from "./thrustingSwords";
 import { torches } from "./torches";
 import { twinblades } from "./twinblades";
 import { whips } from "./whips";
@@ -39,7 +60,7 @@ export const weapons: Accordion[] = [
   {
     id: 6,
     location: "Colossal Weapons",
-    contents: daggers,
+    contents: colossalWeapons,
   },
   {
     id: 7,
@@ -49,12 +70,12 @@ export const weapons: Accordion[] = [
   {
     id: 8,
     location: "Curved Greatswords",
-    contents: daggers,
+    contents: curvedGreatswords,
   },
   {
     id: 9,
     location: "Curved Swords",
-    contents: daggers,
+    contents: curvedSwords,
   },
   {
     id: 10,
@@ -64,92 +85,92 @@ export const weapons: Accordion[] = [
   {
     id: 11,
     location: "Fists",
-    contents: daggers,
+    contents: fists,
   },
   {
     id: 12,
     location: "Flails",
-    contents: daggers,
+    contents: flails,
   },
   {
     id: 13,
     location: "Glintstone Staffs",
-    contents: daggers,
+    contents: glintstoneStaffs,
   },
   {
     id: 14,
     location: "Great Hammers",
-    contents: daggers,
+    contents: greatHammers,
   },
   {
     id: 15,
     location: "Great Spears",
-    contents: daggers,
+    contents: greatSpears,
   },
   {
     id: 16,
     location: "Greataxes",
-    contents: daggers,
+    contents: greataxes,
   },
   {
     id: 17,
     location: "Greatbows",
-    contents: daggers,
+    contents: greatbows,
   },
   {
     id: 18,
     location: "Greatswords",
-    contents: daggers,
+    contents: greatswords,
   },
   {
     id: 19,
     location: "Halberds",
-    contents: daggers,
+    contents: halberds,
   },
   {
     id: 20,
     location: "Hammers",
-    contents: daggers,
+    contents: hammers,
   },
   {
     id: 21,
     location: "Heavy Thrusting Swords",
-    contents: daggers,
+    contents: heavyThrustingSwords,
   },
   {
     id: 22,
     location: "Katanas",
-    contents: daggers,
+    contents: katanas,
   },
   {
     id: 23,
     location: "Light Bows",
-    contents: daggers,
+    contents: lightBows,
   },
   {
     id: 24,
     location: "Reapers",
-    contents: daggers,
+    contents: reapers,
   },
   {
     id: 25,
     location: "Sacred Seals",
-    contents: daggers,
+    contents: sacredSeals,
   },
   {
     id: 26,
     location: "Spears",
-    contents: daggers,
+    contents: spears,
   },
   {
     id: 27,
     location: "Straight Swords",
-    contents: daggers,
+    contents: straightSwords,
   },
   {
     id: 28,
     location: "Thrusting Swords",
-    contents: daggers,
+    contents: thrustingSwords,
   },
   {
     id: 29,

@@ -20,6 +20,27 @@ export const ToggableIHeader = (props: toggableProps) => {
     props.contents
   );
 
+  const styles = StyleSheet.create({
+    componentContainer: {
+      flex: 1,
+    },
+    titleContainer: {
+      borderWidth: 1,
+      borderRadius: 4,
+      borderColor: Colors.primary,
+      marginVertical: "3%",
+      padding: 10,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      backgroundColor: props.isOpen ? Colors.primary : Colors.background,
+    },
+    title: {
+      fontSize: 25,
+      fontFamily: "Mantinia",
+      color: props.isOpen ? Colors.accent : Colors.primary,
+    },
+  });
+
   return (
     <View style={[styles.componentContainer, props.containerStyle]}>
       <TouchableOpacity
@@ -30,7 +51,7 @@ export const ToggableIHeader = (props: toggableProps) => {
         <AntDesign
           name={props.isOpen ? "caretup" : "caretdown"}
           size={24}
-          color={Colors.primary}
+          color={props.isOpen ? Colors.accent : Colors.primary}
         />
       </TouchableOpacity>
       {props.isOpen &&
@@ -53,23 +74,3 @@ export const ToggableIHeader = (props: toggableProps) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  componentContainer: {
-    flex: 1,
-  },
-  titleContainer: {
-    borderWidth: 1,
-    borderRadius: 4,
-    borderColor: Colors.primary,
-    marginVertical: "3%",
-    padding: 10,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  title: {
-    fontSize: 25,
-    fontFamily: "Mantinia",
-    color: Colors.primary,
-  },
-});

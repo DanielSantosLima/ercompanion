@@ -44,7 +44,7 @@ export const CustomCircularProgress = (props: CircularProgressProps) => {
       </Text>
       <CircularProgress
         value={props.value}
-        radius={props.radius ? props.radius : 60}
+        radius={props.radius ? props.radius : 70}
         progressValueColor={
           props.progressValueColor ? props.progressValueColor : Colors.primary
         }

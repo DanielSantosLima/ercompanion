@@ -1,0 +1,156 @@
+import { CommonItem } from "@/lib/interfaces/Common";
+
+export const greatswords: CommonItem[] = [
+  {
+    id: 1,
+    name: "Bastard Sword",
+    location: "Nomadic Merchant (Weeping Peninsula)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Bastard+Sword",
+    checked: false,
+  },
+  {
+    id: 2,
+    name: "Claymore",
+    location: "Castle Morne (Weeping Peninsula)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Claymore",
+    checked: false,
+  },
+  {
+    id: 3,
+    name: "Iron Greatsword",
+    location: "Dropped by red-maned Misbegotten (Forbidden Lands)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Iron+Greatsword",
+    checked: false,
+  },
+  {
+    id: 4,
+    name: "Lordsworn's Greatsword",
+    location: "Gatefront Ruins (Limgrave)",
+    externalLink:
+      "https://eldenring.wiki.fextralife.com/Lordsworn's+Greatsword",
+    checked: false,
+  },
+  {
+    id: 5,
+    name: "Knight's Greatsword",
+    location: "Dropped by Knights",
+    externalLink: "https://eldenring.wiki.fextralife.com/Knight's+Greatsword",
+    checked: false,
+  },
+  {
+    id: 6,
+    name: "Banished Knight's Greatsword",
+    location: "Dropped by Banished Knights",
+    externalLink:
+      "https://eldenring.wiki.fextralife.com/Banished+Knight's+Greatsword",
+    checked: false,
+  },
+  {
+    id: 7,
+    name: "Forked Greatsword",
+    location: "Dropped by Imps",
+    externalLink: "https://eldenring.wiki.fextralife.com/Forked+Greatsword",
+    checked: false,
+  },
+  {
+    id: 8,
+    name: "Flamberge",
+    location: "Redmane Castle (Caelid)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Flamberge",
+    checked: false,
+  },
+  {
+    id: 9,
+    name: "Gargoyle's Greatsword",
+    location: "Valiant Gargoyle (Siofra Aqueduct)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Gargoyle's+Greatsword",
+    checked: false,
+  },
+  {
+    id: 10,
+    name: "Gargoyle's Blackblade",
+    location: "Black Blade Kindred (Beastial Sanctum)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Gargoyle's+Blackblade",
+    checked: false,
+  },
+  {
+    id: 11,
+    name: "Inseparable Sword",
+    location: "D's brother (Prince of Death's Throne)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Inseparable+Sword",
+    checked: false,
+  },
+  {
+    id: 12,
+    name: "Sword of Milos",
+    location: "Dung Eater (Subterranean Shunning-Grounds)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Sword+of+Milos",
+    checked: false,
+  },
+  {
+    id: 13,
+    name: "Marais Executioner's Sword",
+    location: "Elemer of the Briar (The Shaded Castle)",
+    externalLink:
+      "https://eldenring.wiki.fextralife.com/Marais+Executioner's+Sword",
+    checked: false,
+  },
+  {
+    id: 14,
+    name: "Ordovis's Greatsword",
+    location: "Crucible Knight Ordovis (Auriza Hero's Grave)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Ordovis's+Greatsword",
+    checked: false,
+  },
+  {
+    id: 15,
+    name: "Alabaster Lord's Sword",
+    location: "Crucible Knight Ordovis (Auriza Hero's Grave)",
+    externalLink:
+      "https://eldenring.wiki.fextralife.com/Alabaster+Lord's+Sword",
+    checked: false,
+  },
+  {
+    id: 16,
+    name: "Death's Poker",
+    location: "Death Rite Bird (Caelid)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Death's+Poker",
+    checked: false,
+  },
+  {
+    id: 17,
+    name: "Helphen's Steeple",
+    location: "Tibia Mariner (Castle Sol)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Helphen's+Steeple",
+    checked: false,
+  },
+  {
+    id: 18,
+    name: "Blasphemous Blade",
+    location: "Enia (Roundtable Hold)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Blasphemous+Blade",
+    checked: false,
+  },
+  {
+    id: 19,
+    name: "Golden Order Greatsword",
+    location: "Misbegotten Crusader (Cave of the Forlorn)",
+    externalLink:
+      "https://eldenring.wiki.fextralife.com/Golden+Order+Greatsword",
+    checked: false,
+  },
+  {
+    id: 20,
+    name: "Dark Moon Greatsword",
+    location: "Ranni's questline (Cathedral of Manus Celes)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Dark+Moon+Greatsword",
+    checked: false,
+  },
+  {
+    id: 21,
+    name: "Sacred Relic Sword",
+    location: "Enia (Roundtable Hold)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Sacred+Relic+Sword",
+    checked: false,
+  },
+];

@@ -1,0 +1,103 @@
+import { CommonItem } from "@/lib/interfaces/Common";
+
+export const greatHammers: CommonItem[] = [
+  {
+    id: 1,
+    name: "Large Club",
+    location: "Cliff south of Forlorn Hound Evergaol (Limgrave)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Large+Club",
+    checked: false,
+  },
+  {
+    id: 2,
+    name: "Curved Great Club",
+    location: "Dropped by Second-Generation Albinaurics (Liurnia of the Lakes)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Curved+Great+Club",
+    checked: false,
+  },
+  {
+    id: 3,
+    name: "Great Mace",
+    location: "Chest outside Grand Lift of Dectus (Liurnia of the Lakes)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Great+Mace",
+    checked: false,
+  },
+  {
+    id: 4,
+    name: "Pickaxe",
+    location: "Dropped by Miners",
+    externalLink: "https://eldenring.wiki.fextralife.com/Pickaxe",
+    checked: false,
+  },
+  {
+    id: 5,
+    name: "Brick Hammer",
+    location: "Stormveil Castle (Limgrave)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Brick+Hammer",
+    checked: false,
+  },
+  {
+    id: 6,
+    name: "Battle Hammer",
+    location: "Dropped by Duelists (Leyndell Royal Capital)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Battle+Hammer",
+    checked: false,
+  },
+  {
+    id: 7,
+    name: "Rotten Battle Hammer",
+    location: "Dropped by Rotten Duelist (Consecrated Snowfield)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Rotten+Battle+Hammer",
+    checked: false,
+  },
+  {
+    id: 8,
+    name: "Celebrant's Skull",
+    location: "Close to Windmill Village Site of Grace (Altus Plateu)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Celebrant's+Skull",
+    checked: false,
+  },
+  {
+    id: 9,
+    name: "Great Stars",
+    location: "Carriage (Altus Plateu)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Great+Stars",
+    checked: false,
+  },
+  {
+    id: 10,
+    name: "Greathorn Hammer",
+    location: "Dropped by Ancestral Follower (Siofra River)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Greathorn+Hammer",
+    checked: false,
+  },
+  {
+    id: 11,
+    name: "Envoy's Long Horn",
+    location: "Dropped by Large Oracle Envoy (Leyndell, Royal Capital)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Envoy's+Long+Horn",
+    checked: false,
+  },
+  {
+    id: 12,
+    name: "Cranial Vessel Candlestand",
+    location: "Giant-Conquering Hero's Grave (Mountaintops of the Giants)",
+    externalLink:
+      "https://eldenring.wiki.fextralife.com/Cranial+Vessel+Candlestand",
+    checked: false,
+  },
+  {
+    id: 13,
+    name: "Beastclaw Greathammer",
+    location: "7th Deathroot given to Gurranq (Bestial Sanctum)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Beastclaw+Greathammer",
+    checked: false,
+  },
+  {
+    id: 14,
+    name: "Devourer's Scepter",
+    location: "Knight/Recusant Bernahl (Warmaster's Shack)",
+    externalLink: "https://eldenring.wiki.fextralife.com/Devourer's+Scepter",
+    checked: false,
+  },
+];
