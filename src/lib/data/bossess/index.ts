@@ -24,101 +24,101 @@ export const bossess: Accordion[] = [
   {
     id: 1,
     location: "Limgrave",
-    contents: limgraveBossess
+    contents: limgraveBossess,
   },
   {
     id: 2,
     location: "Weeping Peninsula",
-    contents: weepingPeninsulaBossess
+    contents: weepingPeninsulaBossess,
   },
   {
     id: 3,
     location: "Liurnia of the Lakes",
-    contents: liurniaBossess
+    contents: liurniaBossess,
   },
   {
     id: 4,
     location: "Caelid",
-    contents: caelidBossess
+    contents: caelidBossess,
   },
   {
     id: 5,
     location: "Dragonbarrow",
-    contents: dragonbarrowBossess
+    contents: dragonbarrowBossess,
   },
   {
     id: 6,
     location: "Altus Plateau",
-    contents: altusPlateauBossess
+    contents: altusPlateauBossess,
   },
   {
     id: 7,
     location: "Mt. Gelmir",
-    contents: mtGelmirBossess
+    contents: mtGelmirBossess,
   },
   {
     id: 8,
     location: "Leyndell",
-    contents: leyndellBossess
+    contents: leyndellBossess,
   },
   {
     id: 9,
     location: "Siofra River",
-    contents: siofraRiverBossess
+    contents: siofraRiverBossess,
   },
   {
     id: 10,
     location: "Lake of Rot",
-    contents: lakeOfRotBossess
+    contents: lakeOfRotBossess,
   },
   {
     id: 11,
     location: "Ainsel River",
-    contents: ainselRiverBossess
+    contents: ainselRiverBossess,
   },
   {
     id: 12,
     location: "Nokron, Eternal City",
-    contents: nokronBossess
+    contents: nokronBossess,
   },
   {
     id: 13,
     location: "Deeproot Depths",
-    contents: deeprootDepthsBossess
+    contents: deeprootDepthsBossess,
   },
   {
     id: 14,
     location: "Forbidden Lands",
-    contents: forbiddenLandsBossess
+    contents: forbiddenLandsBossess,
   },
   {
     id: 15,
     location: "Mohgwyn Palace",
-    contents: mohgwynPalaceBossess
+    contents: mohgwynPalaceBossess,
   },
   {
     id: 16,
     location: "Mountaintops of the Giants",
-    contents: mountaintopsOfTheGiantsBossess
+    contents: mountaintopsOfTheGiantsBossess,
   },
   {
     id: 17,
     location: "Consecrated Snowfield",
-    contents: consecratedSnowfieldBossess
+    contents: consecratedSnowfieldBossess,
   },
   {
     id: 18,
     location: "The Haligtree",
-    contents: theHaligtreeBossess
+    contents: theHaligtreeBossess,
   },
   {
     id: 19,
     location: "Crumbling Farum Azula",
-    contents: crumblingFarumAzulaBossess
+    contents: crumblingFarumAzulaBossess,
   },
   {
     id: 20,
     location: "Leyndell, Ashen Capital",
-    contents: leyndellAshenCapitalBossess
+    contents: leyndellAshenCapitalBossess,
   },
-]
+];

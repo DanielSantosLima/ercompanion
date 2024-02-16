@@ -6,6 +6,8 @@ import ProgressItem from "../../components/ProgressItem";
 import { Colors } from "../../lib/assets/Colors";
 import { globalStyle } from "../../lib/assets/globalStyle";
 import { styles } from "./styles";
+// const keys = await AsyncStorage.getAllKeys();
+// AsyncStorage.multiRemove(keys);
 
 interface HomeScreenProps {
   navigation: DrawerNavigationProp<any>; // Adjust type according to your navigation setup
@@ -63,7 +65,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             navigation={navigation}
             progress={0.42}
             title="Sorceries"
-            color="blue"
+            color="#269ba9"
           />
           <ProgressItem
             navigation={navigation}

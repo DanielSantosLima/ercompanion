@@ -45,10 +45,14 @@ export const ToggableItem = (props: AccordionItemProps) => {
         <View
           style={[
             styles.checkBox,
-            { backgroundColor: isChecked ? Colors.primary : Colors.background },
+            {
+              backgroundColor: props.item.checked
+                ? Colors.primary
+                : Colors.background,
+            },
           ]}
         >
-          {isChecked && (
+          {props.item.checked && (
             <MaterialCommunityIcons
               name="sword-cross"
               size={24}

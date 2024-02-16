@@ -1,85 +1,89 @@
-import { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
+import { incantations } from "@/lib/data/incantations/index.ts";
+import { asyncStorageFetch } from "@/lib/functions/asyncStorageFetch.ts";
+import { calculateSingleArrayValues } from "@/lib/functions/calculateSingleArrayValues.ts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useCallback, useEffect, useState } from "react";
+import { FlatList, SafeAreaView, View } from "react-native";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
-import { SearchButton } from "../../components/SearchButton/SearchButton.tsx";
 import { ToggableItem } from "../../components/ToggableItem.tsx";
-import { Colors } from "../../lib/assets/Colors.ts";
-import { ashesOfWar } from "../../lib/data/ashesOfWar/index.ts";
-import { CalculateCommonItemArrayPercentage } from "../../lib/functions/CalculateCommonItemArrayPercentage.ts";
+import { arraySorting } from "../../lib/functions/arraySorting.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const IncantationsScreen = () => {
+  const sortedArray = arraySorting(incantations);
+  const [incantationsArray, setIncantationsArray] =
+    useState<CommonItem[]>(sortedArray);
+
   const [totalCompletion, setTotalCompletion] = useState<number>(0);
-  const [collectedItems, setCollectedItems] =
-    useState<CommonItem[]>(ashesOfWar);
-  const [filteredItems, setFilteredItems] = useState<CommonItem[]>(ashesOfWar);
-  const [textSearch, setTextSearch] = useState<string>("");
+  const [subtitle, setSubtitle] = useState<string>("");
 
   useEffect(() => {
-    filterItems();
-  }, [textSearch, collectedItems]);
+    loadDataFromAsyncStorage();
+  }, []);
 
-  const calculateCompletion = () => {
-    const percentage = CalculateCommonItemArrayPercentage(collectedItems);
-    setTotalCompletion(percentage);
-  };
-  const [isInputVisible, setIsInputVisible] = useState<boolean>(false);
-
-  const filterItems = () => {
-    if (textSearch.trim() === "") {
-      setFilteredItems(collectedItems);
-    } else {
-      const searchTextLower = textSearch.toLowerCase();
-      const results = collectedItems.filter((item) =>
-        item.name.toLowerCase().includes(searchTextLower)
-      );
-      setFilteredItems(results);
-    }
-  };
-
-  const onItemClick = (id: number, checked: boolean) => {
-    const clickedItem = filteredItems.find((item) => item.id === id);
-    if (clickedItem) {
-      const index = collectedItems.findIndex(
-        (item) => item.id === clickedItem.id
-      );
-      if (index !== -1) {
-        const temp = [...collectedItems];
-        temp[index].checked = checked;
-        setCollectedItems(temp);
-        calculateCompletion();
+  const loadDataFromAsyncStorage = async () => {
+    try {
+      // const keys = await AsyncStorage.getAllKeys();
+      // AsyncStorage.multiRemove(keys);
+      const data = await asyncStorageFetch("incantations");
+      if (data !== null) {
+        //Essa linha vai dar problema. Se entrar mais items no array depois que
+        // gravou no Async Storage, não vão aparecer
+        setIncantationsArray(data);
+        calculateCompletion(data);
+      } else {
+        const sortedArray = arraySorting(incantations);
+        setIncantationsArray(sortedArray);
+        calculateCompletion(sortedArray);
       }
+    } catch (error) {
+      console.error("Error loading data from AsyncStorage:", error);
     }
   };
 
-  const toggleInputVisibility = () => {
-    setIsInputVisible(!isInputVisible);
-    setTextSearch("");
+  const calculateCompletion = (array: CommonItem[]) => {
+    const result = calculateSingleArrayValues(array);
+
+    setTotalCompletion(() => result.percentage);
+    setSubtitle(() => result.text);
   };
+
+  //usando UseCallback pra tentar diminuir o tempo de carregamento dos dados
+  const onItemClick = useCallback(
+    (id: number, checked: boolean) => {
+      const index = incantationsArray.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        const temp = [...incantationsArray];
+        temp[index].checked = checked;
+        setIncantationsArray(() => temp);
+        AsyncStorage.setItem("incantations", JSON.stringify(temp)); // Save to AsyncStorage
+        calculateCompletion(temp);
+      }
+    },
+    [incantationsArray],
+  );
 
   return (
     <SafeAreaView style={styles.screenContainer}>
-      <ScrollView style={styles.scrollView}>
+      <View style={styles.scrollView}>
         <View style={styles.circularProgressContainer}>
-          <Text style={styles.progressTitle}>Incantations Collected</Text>
           <CustomCircularProgress
             value={totalCompletion}
-            progressValueColor={"#000"}
-            inActiveStrokeColor="#2ecc71"
-            activeStrokeColor={Colors.primary}
+            valueSuffix="%"
+            title="Incantations Collected"
+            subtitle={subtitle}
+            progressValueFontSize={30}
           />
         </View>
-        <SearchButton
-          isInputVisible={isInputVisible}
-          textSearch={textSearch}
-          setTextSearch={(text) => setTextSearch(text)}
-          toggleInputVisibility={toggleInputVisibility}
+        <FlatList
+          data={incantationsArray}
+          renderItem={({ item }) => (
+            <ToggableItem key={item.id} item={item} onItemClick={onItemClick} />
+          )}
+          keyExtractor={(item) => item.id.toString()}
         />
-        {filteredItems.map((item: CommonItem) => (
-          <ToggableItem key={item.id} item={item} onItemClick={onItemClick} />
-        ))}
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
