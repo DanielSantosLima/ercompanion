@@ -1,3 +1,4 @@
+import { ArmorsScreen } from "@/screens/Armor/Armor";
 import {
   Entypo,
   FontAwesome,
@@ -9,7 +10,6 @@ import {
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StyleSheet } from "react-native";
 import { Colors } from "../lib/assets/Colors";
-import { ArmorScreen } from "../screens/Armor/Armor";
 import { AshesOfWarScreen } from "../screens/AshesOfWar/AshesOfWar";
 import { BossessScreen } from "../screens/Bossess/Bossess";
 import { CookbooksScreen } from "../screens/Cookbooks/Cookbooks";
@@ -19,7 +19,7 @@ import { IncantationsScreen } from "../screens/Incantations/Incantations";
 import { SettingsScreen } from "../screens/Settings/Settings";
 import { ShieldsScreen } from "../screens/Shields/Shields";
 import { SorceriesScreen } from "../screens/Sorceries/Sorceries";
-import { SpiritSummonsScreen } from "../screens/SpiritSummons/SpiritSummons";
+import { SpiritAshesScreen } from "../screens/SpiritSummons/SpiritSummons";
 import { SuportUsScreen } from "../screens/Support/Support";
 import { TalismansScreen } from "../screens/Talismans/Talismans";
 import { WeaponsScreen } from "../screens/Weapons/Weapons";
@@ -99,7 +99,7 @@ export function DrawerNavigator() {
       />
       <Drawer.Screen
         name="Armor"
-        component={ArmorScreen}
+        component={ArmorsScreen}
         options={{
           headerTitle: "",
           drawerIcon: ({ focused, color, size }) => (
@@ -173,8 +173,8 @@ export function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
-        name="Spirit Summons"
-        component={SpiritSummonsScreen}
+        name="Spirit Ashes"
+        component={SpiritAshesScreen}
         options={{
           headerTitle: "",
           drawerIcon: ({ focused, color, size }) => (

@@ -16,19 +16,19 @@ export const styles = StyleSheet.create({
   },
   circularProgressContainer: {
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   searchContainer: {
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      marginVertical: "5%",
-      width: "100%"
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginVertical: "5%",
+    width: "100%",
   },
   textInput: {
-      borderBottomWidth: 1,
-      width: "80%",
-      padding: 15,
-      fontSize: 15
-  }
-})
+    borderBottomWidth: 1,
+    width: "80%",
+    padding: 15,
+    fontSize: 15,
+  },
+});

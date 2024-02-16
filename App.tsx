@@ -18,3 +18,10 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+//Talismans - ok
+//Sorceries - ok
+//incantations - ok
+//cookbooks - ok
+//AshesOfWar - ok
+//SpiritAshes - ok

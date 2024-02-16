@@ -7,16 +7,16 @@ export const shields: Accordion[] = [
   {
     id: 1,
     location: "Small Shields",
-    contents: smallShiels
+    contents: smallShiels,
   },
   {
     id: 2,
     location: "Medium Shields",
-    contents: mediumShields
+    contents: mediumShields,
   },
   {
     id: 3,
     location: "Great Shields",
-    contents: greatShields
+    contents: greatShields,
   },
-]
+];

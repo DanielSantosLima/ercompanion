@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
-import { useState } from "react";
+import { memo, useState } from "react";
 import {
   Modal,
   StyleSheet,
@@ -18,7 +18,9 @@ type AccordionItemProps = {
   onItemClick(id: number, checked: boolean): void;
 };
 
-export const ToggableItem = (props: AccordionItemProps) => {
+export const ToggableItem = memo(function ToggableItem(
+  props: AccordionItemProps,
+) {
   const [isChecked, setIsChecked] = useState(props.item.checked);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
@@ -116,7 +118,7 @@ export const ToggableItem = (props: AccordionItemProps) => {
       </Modal>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

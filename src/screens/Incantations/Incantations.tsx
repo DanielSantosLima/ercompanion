@@ -1,17 +1,17 @@
+import { ToggableItem } from "@/components/ToggableItem.tsx";
 import { incantations } from "@/lib/data/incantations/index.ts";
 import { asyncStorageFetch } from "@/lib/functions/asyncStorageFetch.ts";
 import { calculateSingleArrayValues } from "@/lib/functions/calculateSingleArrayValues.ts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
-import { ToggableItem } from "../../components/ToggableItem.tsx";
 import { arraySorting } from "../../lib/functions/arraySorting.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const IncantationsScreen = () => {
-  const sortedArray = arraySorting(incantations);
+  const sortedArray = useMemo(() => arraySorting(incantations), []);
   const [incantationsArray, setIncantationsArray] =
     useState<CommonItem[]>(sortedArray);
 
@@ -76,14 +76,16 @@ export const IncantationsScreen = () => {
             progressValueFontSize={30}
           />
         </View>
-        <FlatList
-          data={incantationsArray}
-          renderItem={({ item }) => (
-            <ToggableItem key={item.id} item={item} onItemClick={onItemClick} />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-        />
       </View>
+      <FlatList
+        data={incantationsArray}
+        renderItem={({ item }) => (
+          <ToggableItem key={item.id} item={item} onItemClick={onItemClick} />
+        )}
+        keyExtractor={(item) => item.id.toString()}
+        style={{ marginHorizontal: "5%" }}
+        initialNumToRender={10}
+      />
     </SafeAreaView>
   );
 };

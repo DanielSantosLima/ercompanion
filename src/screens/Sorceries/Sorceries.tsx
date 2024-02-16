@@ -1,17 +1,17 @@
+import { ToggableItem } from "@/components/ToggableItem.tsx";
 import { sorceries } from "@/lib/data/sorceries/index.ts";
 import { asyncStorageFetch } from "@/lib/functions/asyncStorageFetch.ts";
 import { calculateSingleArrayValues } from "@/lib/functions/calculateSingleArrayValues.ts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
-import { ToggableItem } from "../../components/ToggableItem.tsx";
 import { arraySorting } from "../../lib/functions/arraySorting.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const SorceriesScreen = () => {
-  const sortedArray = arraySorting(sorceries);
+  const sortedArray = useMemo(() => arraySorting(sorceries), []);
   const [sorceriesArray, setSorceriesArray] =
     useState<CommonItem[]>(sortedArray);
 
@@ -28,6 +28,8 @@ export const SorceriesScreen = () => {
       // AsyncStorage.multiRemove(keys);
       const data = await asyncStorageFetch("sorceries");
       if (data !== null) {
+        //Essa linha vai dar problema. Se entrar mais items no array depois que
+        // gravou no Async Storage, não vão aparecer
         setSorceriesArray(data);
         calculateCompletion(data);
       } else {
@@ -69,19 +71,21 @@ export const SorceriesScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="Sorceries Collected"
+            title="sorceries Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />
         </View>
-        <FlatList
-          data={sorceriesArray}
-          renderItem={({ item }) => (
-            <ToggableItem key={item.id} item={item} onItemClick={onItemClick} />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-        />
       </View>
+      <FlatList
+        data={sorceriesArray}
+        renderItem={({ item }) => (
+          <ToggableItem key={item.id} item={item} onItemClick={onItemClick} />
+        )}
+        keyExtractor={(item) => item.id.toString()}
+        style={{ marginHorizontal: "5%" }}
+        initialNumToRender={10}
+      />
     </SafeAreaView>
   );
 };

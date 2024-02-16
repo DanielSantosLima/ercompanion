@@ -76,7 +76,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           <ProgressItem
             navigation={navigation}
             progress={0.22}
-            title="Spirit Summons"
+            title="Spirit Ashes"
             color="blue"
           />
           <ProgressItem

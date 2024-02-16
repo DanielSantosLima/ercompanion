@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
   circularProgressContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "5%",
   },
   searchContainer: {
     flexDirection: "row",

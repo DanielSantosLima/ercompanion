@@ -22,7 +22,7 @@ export const WeaponsScreen = () => {
     const calculation = calculateAccordionCompletion(weaponsArray);
 
     setNumberOfBossess(
-      `${calculation.totalChecked}/${calculation.totalInArray}`
+      `${calculation.totalChecked}/${calculation.totalInArray}`,
     );
   }, []);
 
@@ -37,7 +37,7 @@ export const WeaponsScreen = () => {
 
     setTotalCompletion(calculation.percentage);
     setNumberOfBossess(
-      `${calculation.totalChecked}/${calculation.totalInArray}`
+      `${calculation.totalChecked}/${calculation.totalInArray}`,
     );
   };
 

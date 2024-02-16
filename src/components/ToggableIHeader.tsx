@@ -1,5 +1,5 @@
 import { AntDesign } from "@expo/vector-icons";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../lib/assets/Colors";
 import { globalStyle } from "../lib/assets/globalStyle";
@@ -9,15 +9,17 @@ import { ToggableItem } from "./ToggableItem";
 type toggableProps = {
   title: string;
   contents: CommonItem[];
-  containerStyle?: {};
+  containerStyle?: object;
   isOpen: boolean;
   toggleItem: () => void;
   calculateCompletion(items: CommonItem[], arrayId: number): void;
 };
 
-export const ToggableIHeader = (props: toggableProps) => {
+export const ToggableHeader = memo(function ToggableIHeader(
+  props: toggableProps,
+) {
   const [collectedItems, setCollectedItems] = useState<CommonItem[]>(
-    props.contents
+    props.contents,
   );
 
   const styles = StyleSheet.create({
@@ -73,4 +75,4 @@ export const ToggableIHeader = (props: toggableProps) => {
         ))}
     </View>
   );
-};
+});
