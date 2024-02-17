@@ -1,8 +1,8 @@
 import { Accordion } from "@/lib/interfaces/Accordion";
+import { chestArmor } from "./chestArmor";
 import { handsArmor } from "./handsArmor";
 import { headArmor } from "./headArmor";
 import { legsArmor } from "./legsArmor";
-import { chestArmor } from "./torsoArmor";
 
 export const armor: Accordion[] = [
   {
