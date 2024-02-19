@@ -8,6 +8,7 @@ interface ProgressItemProps {
   title: string;
   progress: number;
   color?: string;
+  total: string;
 }
 
 export const ProgressItem = (props: ProgressItemProps) => {
@@ -19,7 +20,11 @@ export const ProgressItem = (props: ProgressItemProps) => {
         }}
       >
         <View style={styles.barItem}>
-          <Text style={globalStyle.text}>{props.title}</Text>
+          <View>
+            <Text style={globalStyle.text}>
+              {props.title} - {props.total}
+            </Text>
+          </View>
           <Progress.Bar
             progress={props.progress}
             width={200}

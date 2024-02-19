@@ -7,6 +7,9 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 
+// const keys = await AsyncStorage.getAllKeys();
+// AsyncStorage.multiRemove(keys);
+
 export const SettingsScreen = () => {
   return (
     <SafeAreaView style={styles.screenView}>

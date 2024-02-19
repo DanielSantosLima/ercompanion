@@ -1,20 +1,55 @@
+import { asyncStorageFetch } from "@/lib/functions/asyncStorageFetch";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
-import { useState } from "react";
+import { useIsFocused } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress";
 import ProgressItem from "../../components/ProgressItem";
 import { Colors } from "../../lib/assets/Colors";
 import { globalStyle } from "../../lib/assets/globalStyle";
 import { styles } from "./styles";
-// const keys = await AsyncStorage.getAllKeys();
-// AsyncStorage.multiRemove(keys);
 
 interface HomeScreenProps {
   navigation: DrawerNavigationProp<any>; // Adjust type according to your navigation setup
 }
 
+type HomeScreenType = {
+  talismans: string;
+  sorceries: string;
+  incantations: string;
+  [key: string]: string;
+};
+
 export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const [totalCompletion, setTotalCompletion] = useState<number>(70);
+  const [talismansTotal, setTalismansTotal] = useState<string>("0");
+  const [itemsValues, setItemsValues] = useState<HomeScreenType>({
+    talismans: "0",
+    sorceries: "0",
+    incantations: "0",
+  });
+
+  const focused = useIsFocused();
+
+  const initialFetch = async () => {
+    for (const prop in itemsValues) {
+      if (Object.prototype.hasOwnProperty.call(itemsValues, prop)) {
+        const result = asyncStorageFetch(itemsValues[prop]);
+        console.log(result);
+      }
+    }
+    // const talismans = await asyncStorageFetch("talismans");
+
+    // if (talismans) {
+    //   const result = calculateSingleArrayValues(talismans);
+    //   setTalismansTotal(() => result.text);
+    //   console.log(result);
+    // }
+  };
+
+  useEffect(() => {
+    initialFetch();
+  }, [focused]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -58,7 +93,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           <ProgressItem
             navigation={navigation}
             progress={0.71}
-            title="Talismans"
+            title={`Talismans`}
+            total={talismansTotal}
             color="blue"
           />
           <ProgressItem
