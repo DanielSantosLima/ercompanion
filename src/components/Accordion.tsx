@@ -19,7 +19,7 @@ export const AccordionComponent = (props: AccordionProps) => {
   };
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       {props.item.map((item: Accordion) => (
         <ToggableHeader
           key={item.id}

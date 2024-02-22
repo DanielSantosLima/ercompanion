@@ -6,7 +6,7 @@ import { calculateAccordionCompletion } from "@/lib/functions/calculateAccordion
 import { Accordion } from "@/lib/interfaces/Accordion";
 import { CommonItem } from "@/lib/interfaces/Common";
 import { useEffect, useState } from "react";
-import { SafeAreaView, View } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import { styles } from "./styles";
 
 export const ArmorsScreen = () => {
@@ -40,7 +40,7 @@ export const ArmorsScreen = () => {
 
   return (
     <SafeAreaView style={styles.screenContainer}>
-      <View style={styles.scrollView}>
+      <ScrollView style={styles.scrollView}>
         <View style={styles.circularProgressContainer}>
           <CustomCircularProgress
             value={totalCompletion}
@@ -59,7 +59,7 @@ export const ArmorsScreen = () => {
             calculateCompletion={calculateCompletion}
           />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
