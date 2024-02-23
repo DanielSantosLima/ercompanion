@@ -25,7 +25,6 @@ export const CookbooksScreen = () => {
   const loadDataFromAsyncStorage = async () => {
     try {
       const data = await commonItemAsyncStorageFetch("cookbooks");
-      console.log(data);
 
       if (data !== null) {
         //Essa linha vai dar problema. Se entrar mais items no array depois que
@@ -73,7 +72,7 @@ export const CookbooksScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="cookbooks Collected"
+            title="Cookbooks Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />

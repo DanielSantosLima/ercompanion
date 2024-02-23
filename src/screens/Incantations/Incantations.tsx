@@ -71,7 +71,7 @@ export const IncantationsScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="incantations Collected"
+            title="Incantations Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />

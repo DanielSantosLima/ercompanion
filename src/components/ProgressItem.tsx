@@ -21,14 +21,15 @@ export const ProgressItem = (props: ProgressItemProps) => {
       >
         <View style={styles.barItem}>
           <View>
-            <Text style={globalStyle.text}>
+            <Text style={[globalStyle.text, { fontSize: 18 }]}>
               {props.title} - {props.total}
             </Text>
           </View>
           <Progress.Bar
             progress={props.progress}
-            width={200}
+            width={250}
             color={props.color}
+            height={15}
           />
         </View>
       </TouchableOpacity>

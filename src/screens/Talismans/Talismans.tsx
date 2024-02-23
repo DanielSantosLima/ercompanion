@@ -71,7 +71,7 @@ export const TalismansScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="talismans Collected"
+            title="Talismans Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />

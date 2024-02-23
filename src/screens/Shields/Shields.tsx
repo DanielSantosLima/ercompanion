@@ -65,7 +65,7 @@ export const ShieldsScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="shields Defeated"
+            title="Shields Collected"
             subtitle={numberOfShields}
             subtitleFontSize={14}
             progressValueFontSize={30}

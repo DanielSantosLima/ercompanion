@@ -4,6 +4,6 @@ import { Colors } from "./Colors";
 export const globalStyle = StyleSheet.create({
   text: {
     fontFamily: "Mantinia",
-    color: Colors.primary
-  }
-})
+    color: Colors.primary,
+  },
+});

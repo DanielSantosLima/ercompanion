@@ -71,7 +71,7 @@ export const SpiritAshesScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="spiritAshes Collected"
+            title="Spirit Ashes Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />

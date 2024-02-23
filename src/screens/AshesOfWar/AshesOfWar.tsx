@@ -71,7 +71,7 @@ export const AshesOfWarScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="ashesOfWar Collected"
+            title="Ashes of War Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />

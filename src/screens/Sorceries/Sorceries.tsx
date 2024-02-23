@@ -71,7 +71,7 @@ export const SorceriesScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="sorceries Collected"
+            title="Sorceries Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />
