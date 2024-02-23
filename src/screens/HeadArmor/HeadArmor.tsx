@@ -1,18 +1,18 @@
 import { ToggableItem } from "@/components/ToggableItem.tsx";
-import { talismans } from "@/lib/data/talismans/index.ts";
-import { calculateCommonItemCompletion } from "@/lib/functions/calculateCommonItemCompletion.ts";
-import { commonItemArraySorting } from "@/lib/functions/commonItemArraySorting.ts";
+import { headArmor } from "@/lib/data/armor/headArmor.ts";
+import { calculateSingleArrayValues } from "@/lib/functions/calculateCommonItemCompletion.ts";
 import { commonItemAsyncStorageFetch } from "@/lib/functions/commonItemAsyncStorageFetch.ts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
+import { commonItemSorting } from "../../lib/functions/commonItemArraySorting.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
-export const TalismansScreen = () => {
-  const sortedArray = useMemo(() => commonItemArraySorting(talismans), []);
-  const [talismansArray, setTalismansArray] =
+export const HeadArmorScreen = () => {
+  const sortedArray = useMemo(() => commonItemSorting(headArmor), []);
+  const [headArmorsArray, setHeadArmorsArray] =
     useState<CommonItem[]>(sortedArray);
 
   const [totalCompletion, setTotalCompletion] = useState<number>(0);
@@ -24,17 +24,15 @@ export const TalismansScreen = () => {
 
   const loadDataFromAsyncStorage = async () => {
     try {
-      const data = await commonItemAsyncStorageFetch("talismans");
+      const data = await commonItemAsyncStorageFetch("headArmor");
       if (data !== null) {
         //Essa linha vai dar problema. Se entrar mais items no array depois que
         // gravou no Async Storage, não vão aparecer
-        setTalismansArray(data);
+        setHeadArmorsArray(data);
         calculateCompletion(data);
       } else {
-        const stringfy = JSON.stringify(talismans);
-        await AsyncStorage.setItem("talismans", stringfy);
-        const sortedArray = commonItemArraySorting(talismans);
-        setTalismansArray(sortedArray);
+        const sortedArray = commonItemSorting(headArmor);
+        setHeadArmorsArray(sortedArray);
         calculateCompletion(sortedArray);
       }
     } catch (error) {
@@ -43,25 +41,25 @@ export const TalismansScreen = () => {
   };
 
   const calculateCompletion = (array: CommonItem[]) => {
-    const result = calculateCommonItemCompletion(array);
+    const result = calculateSingleArrayValues(array);
 
     setTotalCompletion(() => result.percentage);
-    setSubtitle(() => result.total);
+    setSubtitle(() => result.text);
   };
 
   //usando UseCallback pra tentar diminuir o tempo de carregamento dos dados
   const onItemClick = useCallback(
     (id: number, checked: boolean) => {
-      const index = talismansArray.findIndex((item) => item.id === id);
+      const index = headArmorsArray.findIndex((item) => item.id === id);
       if (index !== -1) {
-        const temp = [...talismansArray];
+        const temp = [...headArmorsArray];
         temp[index].checked = checked;
-        setTalismansArray(() => temp);
-        AsyncStorage.setItem("talismans", JSON.stringify(temp)); // Save to AsyncStorage
+        setHeadArmorsArray(() => temp);
+        AsyncStorage.setItem("headArmor", JSON.stringify(temp)); // Save to AsyncStorage
         calculateCompletion(temp);
       }
     },
-    [talismansArray],
+    [headArmorsArray],
   );
 
   return (
@@ -71,14 +69,14 @@ export const TalismansScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="talismans Collected"
+            title="Head Armor Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />
         </View>
       </View>
       <FlatList
-        data={talismansArray}
+        data={headArmorsArray}
         renderItem={({ item }) => (
           <ToggableItem key={item.id} item={item} onItemClick={onItemClick} />
         )}

@@ -5,7 +5,7 @@ import { SearchButton } from "../../components/SearchButton/SearchButton.tsx";
 import { ToggableItem } from "../../components/ToggableItem.tsx";
 import { Colors } from "../../lib/assets/Colors.ts";
 import { crystalTears } from "../../lib/data/crystalTears/index.ts";
-import { CalculateCommonItemArrayPercentage } from "../../lib/functions/CalculateCommonItemArrayPercentage.ts";
+import { calculateCommonItemArrayPercentage } from "../../lib/functions/calculateCommonItemArrayPercentage.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./index.ts";
 
@@ -22,7 +22,7 @@ export const CrystalTearsScreen = () => {
   }, [textSearch, collectedItems]);
 
   const calculateCompletion = () => {
-    const percentage = CalculateCommonItemArrayPercentage(collectedItems);
+    const percentage = calculateCommonItemArrayPercentage(collectedItems);
     setTotalCompletion(percentage);
   };
   const [isInputVisible, setIsInputVisible] = useState<boolean>(false);
@@ -33,7 +33,7 @@ export const CrystalTearsScreen = () => {
     } else {
       const searchTextLower = textSearch.toLowerCase();
       const results = collectedItems.filter((item) =>
-        item.name.toLowerCase().includes(searchTextLower)
+        item.name.toLowerCase().includes(searchTextLower),
       );
       setFilteredItems(results);
     }
@@ -43,7 +43,7 @@ export const CrystalTearsScreen = () => {
     const clickedItem = filteredItems.find((item) => item.id === id);
     if (clickedItem) {
       const index = collectedItems.findIndex(
-        (item) => item.id === clickedItem.id
+        (item) => item.id === clickedItem.id,
       );
       if (index !== -1) {
         const temp = [...collectedItems];

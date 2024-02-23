@@ -1,29 +1,45 @@
+import { accordionArraySorting } from "@/lib/functions/accordionArraySorting.ts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { AccordionComponent } from "../../components/Accordion.tsx";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
 import { weapons } from "../../lib/data/weapons/index.ts";
-import { accordionArraySorting } from "../../lib/functions/accordionArraySorting.ts";
-import { calculateAccordionCompletion } from "../../lib/functions/calculateAccordionCompletion.ts";
+import { accordionCompletion } from "../../lib/functions/calculateAccordionCompletion.ts";
 import { Accordion } from "../../lib/interfaces/Accordion.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const WeaponsScreen = () => {
-  const wesponsSorted = accordionArraySorting(weapons);
-
-  const [weaponsArray, setWeaponsArray] = useState<Accordion[]>(wesponsSorted);
+  const [weaponsArray, setWeaponsArray] = useState<Accordion[]>([]);
   const [totalCompletion, setTotalCompletion] = useState<number>(0);
 
   //Esse valor tem que ser inicializado com a resposta da API feita no UseEffect
-  const [numberOfBossess, setNumberOfBossess] = useState<string>("");
+  const [numberOfWeapons, setNumberOfWeapons] = useState<string>("");
+
+  const initialSetup = async () => {
+    const weaponsFetch = await AsyncStorage.getItem("weapons");
+    if (weaponsFetch === null) {
+      const stringfiedArray = JSON.stringify(weapons);
+      AsyncStorage.setItem("weapons", stringfiedArray);
+
+      const calculation = accordionCompletion(weaponsArray);
+      setNumberOfWeapons(`${calculation.total}`);
+      setTotalCompletion(() => calculation.percentage);
+    } else {
+      const parsedWeapons: Accordion[] = JSON.parse(weaponsFetch);
+
+      const calculation = accordionCompletion(parsedWeapons);
+      const wesponsSorted = accordionArraySorting(parsedWeapons);
+
+      setNumberOfWeapons(`${calculation.total}`);
+      setWeaponsArray(() => wesponsSorted);
+      setTotalCompletion(() => calculation.percentage);
+    }
+  };
 
   useEffect(() => {
-    const calculation = calculateAccordionCompletion(weaponsArray);
-
-    setNumberOfBossess(
-      `${calculation.totalChecked}/${calculation.totalInArray}`,
-    );
+    initialSetup();
   }, []);
 
   const calculateCompletion = (value: CommonItem[], arrayId: number) => {
@@ -31,14 +47,15 @@ export const WeaponsScreen = () => {
 
     const temp = [...weaponsArray];
     temp[parentIndex].contents = value;
-    setWeaponsArray(temp);
+    setWeaponsArray(() => temp);
 
-    const calculation = calculateAccordionCompletion(weaponsArray);
+    const calculation = accordionCompletion(weaponsArray);
 
     setTotalCompletion(calculation.percentage);
-    setNumberOfBossess(
-      `${calculation.totalChecked}/${calculation.totalInArray}`,
-    );
+    setNumberOfWeapons(`${calculation.total}`);
+
+    const stringfiedArray = JSON.stringify(temp);
+    AsyncStorage.setItem("weapons", stringfiedArray);
   };
 
   return (
@@ -49,7 +66,7 @@ export const WeaponsScreen = () => {
             value={totalCompletion}
             valueSuffix="%"
             title="Weapons Collected"
-            subtitle={numberOfBossess}
+            subtitle={numberOfWeapons}
             subtitleFontSize={14}
             progressValueFontSize={30}
             radius={70}

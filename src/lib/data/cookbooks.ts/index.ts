@@ -1,6 +1,6 @@
 import { CommonItem } from "../../interfaces/Common";
 
-export const cookbooks: CommonItem[] = [
+export const cookbooksData: CommonItem[] = [
   {
     id: 1,
     name: "Armorer's Cookbook (1)",

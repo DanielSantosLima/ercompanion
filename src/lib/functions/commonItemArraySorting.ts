@@ -1,6 +1,6 @@
 import { CommonItem } from "../interfaces/Common";
 
-export const arraySorting = (array: CommonItem[]): CommonItem[] => {
+export const commonItemArraySorting = (array: CommonItem[]): CommonItem[] => {
   const sortedArray = array.sort((a: CommonItem, b: CommonItem) => {
     const nameA = a.name.toLowerCase();
     const nameB = b.name.toLowerCase();
@@ -13,5 +13,5 @@ export const arraySorting = (array: CommonItem[]): CommonItem[] => {
       return 0;
     }
   });
-  return sortedArray
-}
+  return sortedArray;
+};

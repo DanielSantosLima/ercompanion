@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import {
   Modal,
   StyleSheet,
@@ -23,6 +23,10 @@ export const ToggableItem = memo(function ToggableItem(
 ) {
   const [isChecked, setIsChecked] = useState(props.item.checked);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsChecked(props.item.checked);
+  }, [props.item.checked]);
 
   const handlePress = () => {
     const newCheckedState = !isChecked;

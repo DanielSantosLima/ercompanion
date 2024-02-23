@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginHorizontal: "10%",
+    marginVertical: "10%",
   },
   resetButtonContainer: {
     borderRadius: 4,
@@ -35,5 +36,31 @@ export const styles = StyleSheet.create({
   text: {
     fontFamily: "Mantinia",
     fontSize: 20,
+  },
+  modalBackground: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  modalButton: {
+    padding: 10,
+    borderRadius: 4,
+    marginHorizontal: "2%",
+    width: "40%",
+    alignItems: "center",
+  },
+  modalText: {
+    fontSize: 20,
+    color: "#fff",
+    fontFamily: "Mantinia",
   },
 });

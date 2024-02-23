@@ -1,4 +1,5 @@
 import { ArmorsScreen } from "@/screens/Armor/Armor";
+import { SpiritAshesScreen } from "@/screens/SpiritSummons/SpiritAshes";
 import {
   Entypo,
   FontAwesome,
@@ -19,7 +20,6 @@ import { IncantationsScreen } from "../screens/Incantations/Incantations";
 import { SettingsScreen } from "../screens/Settings/Settings";
 import { ShieldsScreen } from "../screens/Shields/Shields";
 import { SorceriesScreen } from "../screens/Sorceries/Sorceries";
-import { SpiritAshesScreen } from "../screens/SpiritSummons/SpiritSummons";
 import { SuportUsScreen } from "../screens/Support/Support";
 import { TalismansScreen } from "../screens/Talismans/Talismans";
 import { WeaponsScreen } from "../screens/Weapons/Weapons";
@@ -57,7 +57,7 @@ export function DrawerNavigator() {
         component={HomeScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <FontAwesome5
               name="home"
               size={24}
@@ -72,7 +72,7 @@ export function DrawerNavigator() {
         component={BossessScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="shield-sword"
               size={24}
@@ -87,7 +87,7 @@ export function DrawerNavigator() {
         component={WeaponsScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="sword"
               size={24}
@@ -97,12 +97,13 @@ export function DrawerNavigator() {
           drawerLabelStyle: styles.drawerLabel,
         }}
       />
+
       <Drawer.Screen
         name="Armor"
         component={ArmorsScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <FontAwesome5
               name="vest"
               size={24}
@@ -117,7 +118,7 @@ export function DrawerNavigator() {
         component={ShieldsScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <Fontisto
               name="shield"
               size={24}
@@ -132,7 +133,7 @@ export function DrawerNavigator() {
         component={TalismansScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="necklace"
               size={24}
@@ -147,7 +148,7 @@ export function DrawerNavigator() {
         component={SorceriesScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="magic-staff"
               size={24}
@@ -162,7 +163,7 @@ export function DrawerNavigator() {
         component={IncantationsScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <FontAwesome5
               name="pray"
               size={24}
@@ -177,7 +178,7 @@ export function DrawerNavigator() {
         component={SpiritAshesScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <FontAwesome6
               name="ghost"
               size={24}
@@ -192,7 +193,7 @@ export function DrawerNavigator() {
         component={AshesOfWarScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="run-fast"
               size={24}
@@ -207,7 +208,7 @@ export function DrawerNavigator() {
         component={CookbooksScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <FontAwesome6
               name="book"
               size={24}
@@ -217,42 +218,12 @@ export function DrawerNavigator() {
           drawerLabelStyle: styles.drawerLabel,
         }}
       />
-      {/* <Drawer.Screen
-        name="Crystal Tears"
-        component={CrystalTearsScreen}
-        options={{
-          headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
-            <Entypo
-              name="drop"
-              size={24}
-              color={focused ? Colors.accent : Colors.primary}
-            />
-          ),
-          drawerLabelStyle: styles.drawerLabel,
-        }}
-      />
-      <Drawer.Screen
-        name="Paintings"
-        component={PaintingsScreen}
-        options={{
-          headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
-            <Fontisto
-              name="picture"
-              size={24}
-              color={focused ? Colors.accent : Colors.primary}
-            />
-          ),
-          drawerLabelStyle: styles.drawerLabel,
-        }}
-      /> */}
       <Drawer.Screen
         name="FAQ"
         component={FAQScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <Entypo
               name="help"
               size={24}
@@ -267,7 +238,7 @@ export function DrawerNavigator() {
         component={SuportUsScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <FontAwesome
               name="money"
               size={24}
@@ -282,7 +253,7 @@ export function DrawerNavigator() {
         component={SettingsScreen}
         options={{
           headerTitle: "",
-          drawerIcon: ({ focused, color, size }) => (
+          drawerIcon: ({ focused }) => (
             <FontAwesome
               name="gears"
               size={24}

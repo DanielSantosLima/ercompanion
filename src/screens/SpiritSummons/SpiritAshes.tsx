@@ -1,18 +1,18 @@
 import { ToggableItem } from "@/components/ToggableItem.tsx";
 import { spiritAshes } from "@/lib/data/spiritAshes/index.ts";
-import { asyncStorageFetch } from "@/lib/functions/asyncStorageFetch.ts";
-import { calculateSingleArrayValues } from "@/lib/functions/calculateSingleArrayValues.ts";
+import { calculateCommonItemCompletion } from "@/lib/functions/calculateCommonItemCompletion.ts";
+import { commonItemArraySorting } from "@/lib/functions/commonItemArraySorting.ts";
+import { commonItemAsyncStorageFetch } from "@/lib/functions/commonItemAsyncStorageFetch.ts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
-import { arraySorting } from "../../lib/functions/arraySorting.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const SpiritAshesScreen = () => {
-  const sortedArray = useMemo(() => arraySorting(spiritAshes), []);
-  const [spiritAshesArray, setspiritAshesArray] =
+  const sortedArray = useMemo(() => commonItemArraySorting(spiritAshes), []);
+  const [spiritAshesArray, setSpiritAshesArray] =
     useState<CommonItem[]>(sortedArray);
 
   const [totalCompletion, setTotalCompletion] = useState<number>(0);
@@ -24,17 +24,17 @@ export const SpiritAshesScreen = () => {
 
   const loadDataFromAsyncStorage = async () => {
     try {
-      // const keys = await AsyncStorage.getAllKeys();
-      // AsyncStorage.multiRemove(keys);
-      const data = await asyncStorageFetch("spiritAshes");
+      const data = await commonItemAsyncStorageFetch("spiritAshes");
       if (data !== null) {
         //Essa linha vai dar problema. Se entrar mais items no array depois que
         // gravou no Async Storage, não vão aparecer
-        setspiritAshesArray(data);
+        setSpiritAshesArray(data);
         calculateCompletion(data);
       } else {
-        const sortedArray = arraySorting(spiritAshes);
-        setspiritAshesArray(sortedArray);
+        const stringfy = JSON.stringify(spiritAshes);
+        await AsyncStorage.setItem("spiritAshes", stringfy);
+        const sortedArray = commonItemArraySorting(spiritAshes);
+        setSpiritAshesArray(sortedArray);
         calculateCompletion(sortedArray);
       }
     } catch (error) {
@@ -43,10 +43,10 @@ export const SpiritAshesScreen = () => {
   };
 
   const calculateCompletion = (array: CommonItem[]) => {
-    const result = calculateSingleArrayValues(array);
+    const result = calculateCommonItemCompletion(array);
 
     setTotalCompletion(() => result.percentage);
-    setSubtitle(() => result.text);
+    setSubtitle(() => result.total);
   };
 
   //usando UseCallback pra tentar diminuir o tempo de carregamento dos dados
@@ -56,7 +56,7 @@ export const SpiritAshesScreen = () => {
       if (index !== -1) {
         const temp = [...spiritAshesArray];
         temp[index].checked = checked;
-        setspiritAshesArray(() => temp);
+        setSpiritAshesArray(() => temp);
         AsyncStorage.setItem("spiritAshes", JSON.stringify(temp)); // Save to AsyncStorage
         calculateCompletion(temp);
       }
@@ -71,7 +71,7 @@ export const SpiritAshesScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="Spirit Ashes Collected"
+            title="spiritAshes Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />

@@ -1,17 +1,17 @@
 import { ToggableItem } from "@/components/ToggableItem.tsx";
-import { cookbooks } from "@/lib/data/cookbooks.ts/index.ts";
-import { asyncStorageFetch } from "@/lib/functions/asyncStorageFetch.ts";
-import { calculateSingleArrayValues } from "@/lib/functions/calculateSingleArrayValues.ts";
+import { cookbooksData } from "@/lib/data/cookbooks.ts/index.ts";
+import { calculateCommonItemCompletion } from "@/lib/functions/calculateCommonItemCompletion.ts";
+import { commonItemArraySorting } from "@/lib/functions/commonItemArraySorting.ts";
+import { commonItemAsyncStorageFetch } from "@/lib/functions/commonItemAsyncStorageFetch.ts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
-import { arraySorting } from "../../lib/functions/arraySorting.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const CookbooksScreen = () => {
-  const sortedArray = useMemo(() => arraySorting(cookbooks), []);
+  const sortedArray = useMemo(() => commonItemArraySorting(cookbooksData), []);
   const [cookbooksArray, setCookbooksArray] =
     useState<CommonItem[]>(sortedArray);
 
@@ -24,16 +24,18 @@ export const CookbooksScreen = () => {
 
   const loadDataFromAsyncStorage = async () => {
     try {
-      // const keys = await AsyncStorage.getAllKeys();
-      // AsyncStorage.multiRemove(keys);
-      const data = await asyncStorageFetch("cookbooks");
+      const data = await commonItemAsyncStorageFetch("cookbooks");
+      console.log(data);
+
       if (data !== null) {
         //Essa linha vai dar problema. Se entrar mais items no array depois que
         // gravou no Async Storage, não vão aparecer
         setCookbooksArray(data);
         calculateCompletion(data);
       } else {
-        const sortedArray = arraySorting(cookbooks);
+        const stringfyItem = JSON.stringify(cookbooksData);
+        await AsyncStorage.setItem("cookbooks", stringfyItem);
+        const sortedArray = commonItemArraySorting(cookbooksData);
         setCookbooksArray(sortedArray);
         calculateCompletion(sortedArray);
       }
@@ -43,10 +45,10 @@ export const CookbooksScreen = () => {
   };
 
   const calculateCompletion = (array: CommonItem[]) => {
-    const result = calculateSingleArrayValues(array);
+    const result = calculateCommonItemCompletion(array);
 
     setTotalCompletion(() => result.percentage);
-    setSubtitle(() => result.text);
+    setSubtitle(() => result.total);
   };
 
   //usando UseCallback pra tentar diminuir o tempo de carregamento dos dados

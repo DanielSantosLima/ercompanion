@@ -1,17 +1,17 @@
 import { ToggableItem } from "@/components/ToggableItem.tsx";
 import { incantations } from "@/lib/data/incantations/index.ts";
-import { asyncStorageFetch } from "@/lib/functions/asyncStorageFetch.ts";
-import { calculateSingleArrayValues } from "@/lib/functions/calculateSingleArrayValues.ts";
+import { calculateCommonItemCompletion } from "@/lib/functions/calculateCommonItemCompletion.ts";
+import { commonItemArraySorting } from "@/lib/functions/commonItemArraySorting.ts";
+import { commonItemAsyncStorageFetch } from "@/lib/functions/commonItemAsyncStorageFetch.ts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { CustomCircularProgress } from "../../components/CustomCircularProgress/CustomCircularProgress.tsx";
-import { arraySorting } from "../../lib/functions/arraySorting.ts";
 import { CommonItem } from "../../lib/interfaces/Common.ts";
 import { styles } from "./styles.ts";
 
 export const IncantationsScreen = () => {
-  const sortedArray = useMemo(() => arraySorting(incantations), []);
+  const sortedArray = useMemo(() => commonItemArraySorting(incantations), []);
   const [incantationsArray, setIncantationsArray] =
     useState<CommonItem[]>(sortedArray);
 
@@ -24,16 +24,16 @@ export const IncantationsScreen = () => {
 
   const loadDataFromAsyncStorage = async () => {
     try {
-      // const keys = await AsyncStorage.getAllKeys();
-      // AsyncStorage.multiRemove(keys);
-      const data = await asyncStorageFetch("incantations");
+      const data = await commonItemAsyncStorageFetch("incantations");
       if (data !== null) {
         //Essa linha vai dar problema. Se entrar mais items no array depois que
         // gravou no Async Storage, não vão aparecer
         setIncantationsArray(data);
         calculateCompletion(data);
       } else {
-        const sortedArray = arraySorting(incantations);
+        const stringfy = JSON.stringify(incantations);
+        await AsyncStorage.setItem("incantations", stringfy);
+        const sortedArray = commonItemArraySorting(incantations);
         setIncantationsArray(sortedArray);
         calculateCompletion(sortedArray);
       }
@@ -43,10 +43,10 @@ export const IncantationsScreen = () => {
   };
 
   const calculateCompletion = (array: CommonItem[]) => {
-    const result = calculateSingleArrayValues(array);
+    const result = calculateCommonItemCompletion(array);
 
     setTotalCompletion(() => result.percentage);
-    setSubtitle(() => result.text);
+    setSubtitle(() => result.total);
   };
 
   //usando UseCallback pra tentar diminuir o tempo de carregamento dos dados
@@ -71,7 +71,7 @@ export const IncantationsScreen = () => {
           <CustomCircularProgress
             value={totalCompletion}
             valueSuffix="%"
-            title="Incantations Collected"
+            title="incantations Collected"
             subtitle={subtitle}
             progressValueFontSize={30}
           />
